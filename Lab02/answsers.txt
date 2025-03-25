@@ -1,0 +1,36 @@
+Câu hỏi: Is JAVA a Pass by Value or a Pass by Reference programming language?
+Trả lời:
+- Java là truyền tham trị (pass-by-value). Tuy nhiên, đối với đối tượng, giá trị được
+ truyền là tham chiếu đến đối tượng, chứ không phải chính đối tượng.
+- Điều này có nghĩa là thay đổi các thuộc tính của đối tượng sẽ được phản ánh ra bên
+ ngoài phương thức, nhưng việc gán lại tham chiếu bên trong phương thức sẽ không ảnh 
+hưởng đến đối tượng ban đầu.
+
+
+Câu hỏi: If you create a constructor method to build a DVD by title then create a constuctor
+method to build a DVD category. Does JAVA allow you to do this?
+Trả lời:
+- Có, Java cho phép tạo nhiều constructor trong một lớp bằng cách nạp chồng constructor
+(constructor overloading). Điều này có nghĩa có thể định nghĩa một constructor để 
+khởi tạo DVD theo tiêu đề (title) và một constructor khác để khởi tạo DVD theo thể loại (category),
+miễn là danh sách tham số của chúng khác nhau.
+
+
+Câu hỏi: 
+1. Tại sao sau khi gọi swap(jungleDVD, cinderellaDVD), tiêu đề của hai đối tượng vẫn giữ nguyên?
+Java là pass-by-value, có nghĩa là khi truyền một đối tượng vào phương thức, thực chất là truyền 
+giá trị của tham chiếu đến đối tượng đó.
+
+Trong phương thức swap(Object o1, Object o2), các tham số o1 và o2 chỉ là bản sao của tham chiếu gốc.
+Khi hoán đổi, chỉ các bản sao của tham chiếu bị thay đổi, còn bản thân các đối tượng jungleDVD và 
+cinderellaDVD trong main() không bị ảnh hưởng. Vì vậy, sau khi gọi swap(), hai đối tượng vẫn giữ 
+nguyên giá trị tiêu đề ban đầu.
+
+2. Tại sao sau khi gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), tiêu đề của jungleDVD thay đổi?
+Trong phương thức changeTitle(), biến dvd tham chiếu đến cùng một đối tượng với jungleDVD.
+
+Lệnh dvd.setTitle(title); thay đổi trực tiếp thuộc tính title của đối tượng jungleDVD, vì cả dvd và
+jungleDVD đều tham chiếu đến cùng một vùng nhớ.
+Tuy nhiên, lệnh dvd = new DigitalVideoDisc(oldTitle); chỉ thay đổi tham chiếu của dvd trong phạm vi phương thức,
+không ảnh hưởng đến jungleDVD bên ngoài.
+Vì vậy, jungleDVD vẫn là đối tượng cũ nhưng có tiêu đề mới được cập nhật.
