@@ -1,0 +1,41 @@
+Q: What class should implement the Comparable interface?
+A: Comparable interface should be implemented by class Media
+
+Q: In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
+A: 
+If sorting by title and then by cost, the overrided method should be:
+@Override
+public int compareTo(Media otherMedia) {
+	int res = this.getTitle().compareTo(otherMedia.getTitle());
+	if (res != 0)
+		return res;
+	if (this.getCost() == otherMedia.getCost())
+		return 0;
+	return this.getCost() > otherMedia.getCost() ? -1 : 1;
+}
+
+If sorting by cost and then by title:
+@Override
+public int compareTo(Media otherMedia) {
+	if (this.getCost() != otherMedia.getCost())
+		return this.getCost() > otherMedia.getCost() ? -1 : 1;
+	return this.getTitle().compareTo(otherMedia.getTitle());
+}
+
+Q: Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+A: Since there is only one signature of compareTo() that is being used in Collections.sort(), there is no way that two rules can be overrided into compareTo() in the same class.
+
+Q: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+A:
+@Override
+public int compareTo(Media otherMedia) {
+	int res = this.getTitle().compareTo(otherMedia.getTitle());
+	if (res != 0)
+		return res;
+	if (this.getLength() != otherMedia.getLength())
+		return this.getLength() < otherMedia.getLength() ? -1 : 1;
+	if (this.getCost() != otherMedia.getCost())
+		return 0;
+	return this.getCost() > otherMedia.getCost() ? -1 : 1;
+}
+
