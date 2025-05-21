@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GUIProject" default="default" basedir=".">
+    <description>Builds, tests, and runs the project GUIProject.</description>
+    <import file="nbproject/build-impl.xml"/>
+
+    <target name="compile" depends="init">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false" debug="true">
+            <compilerarg line="--module-path D:/netbeans/javafx-sdk-24.0.1/lib --add-modules javafx.controls,javafx.fxml"/>
+            <classpath>
+                <pathelement path="D:/netbeans/javafx-sdk-24.0.1/lib/*"/>
+            </classpath>
+        </javac>
+    </target>
+</project>
